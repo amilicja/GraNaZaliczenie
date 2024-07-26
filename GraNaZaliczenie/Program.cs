@@ -116,13 +116,13 @@ namespace GraNaZaliczenie
             {
                 AddBasement();
                 inHouse = true;
-                activeMissions.Add("Clean house than enter the basement"); // Add mission to clean house
+                activeMissions.Add("Clean the house then enter the basement"); // Add mission to clean house
                 AddRandomObjects(item, 10); // Add items for the mission
             }
             else if (level == 4) // Level 4 - Special NPC only
             {
                 AddFinalNPC();
-                activeMissions.Add("Go to PC in a Corner"); // Add mission to talk to the final NPC/ npc placeholder do kompa XD
+                activeMissions.Add("Go to the PC in the corner"); // Add mission to talk to the final NPC/ npc placeholder do kompa XD
             }
 
             // Add items only if not in level 4
@@ -145,7 +145,7 @@ namespace GraNaZaliczenie
             switch (level)
             {
                 case 1:
-                    introText = "One day your father sent you to the market to buy vegetables, but you had holes in your pockets and you lost the 100 zloty you got from him. You need to find a way to earn money and get back home.\nUse arrows to move around.";
+                    introText = "One day your father sent you to the market to buy vegetables, but you had holes in your pockets and you lost the 100 gold you got from him. You need to find a way to earn money and get back home.\nUse arrows to move around.";
                     break;
                 case 2:
                     introText = "After a tough shopping trip, you went home but just before arriving, you remembered that you had the key in the same (holey) pocket, which of course you no longer have. Find the house key.";
@@ -179,7 +179,7 @@ namespace GraNaZaliczenie
             world[houseStartY + 1, houseStartX] = emptySpace;
 
             // Automatically add mission to find the key to the house
-            activeMissions.Add("Find Key to House");
+            activeMissions.Add("Find the Key to the House");
         }
 
         static void AddBasement()
@@ -358,8 +358,8 @@ namespace GraNaZaliczenie
                         world[playerY, playerX] = emptySpace;
                         inventory.Add("Key");
                         Console.SetCursorPosition(0, 0);
-                        Console.WriteLine("You picked up a key!");
-                        CheckMissions("Find Key to House"); // Complete the mission to find the key
+                        Console.WriteLine("You picked up the key!");
+                        CheckMissions("Find the Key to the House"); // Complete the mission to find the key
                         activeMissions.Add("Enter the House"); // Start the mission to enter the house
                     }
                     else if (world[playerY, playerX] == npc)
@@ -403,7 +403,7 @@ namespace GraNaZaliczenie
                             world[y, x] = emptySpace;
                             npcHealth.Remove(npcPosition);
                             score += 10; // Add points for defeating an NPC
-                            CheckMissions("Defeat NPC");
+                            CheckMissions("Defeat any NPC");
                         }
                         else
                         {
@@ -441,10 +441,10 @@ namespace GraNaZaliczenie
             if (action == ConsoleKey.T)
             {
                 Console.WriteLine("Thank you for playing! Game by Alicja Maliszewska, Wojciech Kołaczek, Albert Gałecki.");
-                Console.WriteLine("Press random key to end game.");
+                Console.WriteLine("Press any key to end game.");
                 Console.ReadLine();
                 Console.ReadKey(true);
-                CheckMissions("Go to PC in a Corner"); // Complete the mission to go to the PC in the corner
+                CheckMissions("Go to the PC in the corner"); // Complete the mission to go to the PC in the corner
                 Environment.Exit(0); // End the game after interacting with PC
             }
         }
@@ -465,9 +465,9 @@ namespace GraNaZaliczenie
                 Console.WriteLine($"Mission completed: {completedTask}");
 
                 // Check if all items have been collected on level 3
-                if (level == 3 && completedTask == "Clean house then enter the basement" && !world.Cast<char>().Contains(item))
+                if (level == 3 && completedTask == "Clean the house then enter the basement" && !world.Cast<char>().Contains(item))
                 {
-                    activeMissions.Remove("Clean house then enter the basement"); // Complete the mission to clean the house
+                    activeMissions.Remove("Clean the house then enter the basement"); // Complete the mission to clean the house
                     activeMissions.Add("Enter the Basement"); // Add new mission to enter the basement
                 }
             }
@@ -522,7 +522,7 @@ namespace GraNaZaliczenie
         static bool MiniGame()
         {
             Console.Clear();
-            Console.WriteLine("Press the correct key sequence to attack the NPC!");
+            Console.WriteLine("Quickly type out the correct key sequence to attack the NPC!");
 
             string[] keys = { "A", "S", "D", "W" };
             Random rnd = new Random();
